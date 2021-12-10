@@ -18,9 +18,22 @@ GPIO.setup(digitPins[3], GPIO.OUT)
 
 clockDisplay = LEDdisplay(dataPin, latchPin, clockPin)
 
-while True:
-  for n in range(4):
-    GPIO.output(digitPins[n],1)
-    clockDisplay.setNumber(2)
-    time.sleep(0.4)
-    GPIO.output(digitPins[n],0)
+try: # exception handling
+  while True:
+    for n in range(4):
+      GPIO.output(digitPins[n],1)
+      clockDisplay.setNumber(2)
+      time.sleep(0.4)
+      GPIO.output(digitPins[n],0)
+
+# More exception handling:
+except KeyboardInterrupt: 
+  print('\nExiting')
+except Exception as e: # catch all other errors
+  print(e)               # delete once code is debugged
+  LEDdisplay.p.terminate()      # terminate the process
+  LEDdisplay.p.join(2)          # wait up to 2 sec for process termination before ending code
+
+GPIO.cleanup()
+
+
