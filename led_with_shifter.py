@@ -25,7 +25,7 @@ try: # exception handling
   while True:
     for digit in range(4):
       GPIO.output(digitPins[digit],1)
-      clockDisplay.setNumber(timeNow[digit])
+      clockDisplay.setNumber(timeNow[int(digit)])
       time.sleep(0.001)
       GPIO.output(digitPins[digit],0)
 
