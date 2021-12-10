@@ -27,6 +27,9 @@ if hour > 12: hour = hour - 12
 # Making the time into a list of numbers:
 timeNow = str(hour) + str(minute)
 timeNow = list(timeNow)
+# Adding blank space if only three digits:
+if len(timeNow) == 3:
+  timeNow.insert(0,10) # ten is a blank space
 
 try: # exception handling
   while True:

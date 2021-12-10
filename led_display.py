@@ -16,7 +16,8 @@ class LEDdisplay():
     0b10000010, # 6
     0b11111000, # 7
     0b10000000, # 8
-    0b10010000] # 9
+    0b10010000, # 9
+    0b11111111] # blank
 
   def __init__(self, data, latch, clock):
     self.shifter = Shifter(data, latch, clock)
