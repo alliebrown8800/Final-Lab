@@ -25,7 +25,7 @@ try: # exception handling
   while True:
     for d in range(4):
       GPIO.output(digitPins[d],1)
-      clockDisplay.setNumber(timeNow[d])
+      clockDisplay.setNumber(timeNow[int(d)])
       time.sleep(0.001)
       GPIO.output(digitPins[d],0)
 
@@ -33,7 +33,7 @@ try: # exception handling
 except KeyboardInterrupt: 
   print('\nExiting')
 except Exception as e: # catch all other errors
-  print('\n', e)
+  print(e)
 
 GPIO.cleanup()
 
