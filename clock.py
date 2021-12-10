@@ -56,6 +56,7 @@ class Clock():
       if str(time.localtime().tm_min) != self.currentMinute:
         timeNow = self.getTime()
         self.currentMinute = str(time.localtime().tm_min)
+      print(timeNow)
       for d in range(4):
         GPIO.output(self.digitPins[d],1)
         if len(timeNow) == 3 and d == 0:
