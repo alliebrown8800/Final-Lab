@@ -20,10 +20,10 @@ class Clock():
     0b11111111] # blank
 
   def __init__(self, data, latch, clock, digitPins):
-    print(digitPins)
     self.shifter = Shifter(data, latch, clock)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(self.digitPins[0], GPIO.OUT) 
+    print('what')
     GPIO.setup(self.digitPins[1], GPIO.OUT) 
     GPIO.setup(self.digitPins[2], GPIO.OUT) 
     GPIO.setup(self.digitPins[3], GPIO.OUT)
