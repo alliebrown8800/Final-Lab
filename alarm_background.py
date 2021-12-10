@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-# This code runs continually in the background
-
 # We need to do a few things here:
 # Retrieve alarm time and message from html
 # Read temperature
@@ -16,6 +14,7 @@
 import RPi.GPIO as GPIO
 import time
 import json
+from clock import Clock
 
 # Naming pins
 pin1 = 19
@@ -31,6 +30,8 @@ GPIO.setup(pin2, GPIO.OUT)
 GPIO.setup(pin3, GPIO.OUT)
 
 chosen_alarm = ''
+
+ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
 
 while True:
   with open("alarm.txt", 'r') as f:
