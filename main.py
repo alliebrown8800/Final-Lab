@@ -25,3 +25,8 @@ timeNow = list(timeNow)
 print(timeNow)
 
 print(timeNow[0])
+
+
+for d in range(4):
+  print(timeNow[d])
+  time.sleep(0.001)
