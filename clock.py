@@ -47,13 +47,14 @@ class Clock():
     return(timeNow)
 
   def runClock(self):
-    if time.localtime().tm_min != self.currentMinute:
-      timeNow = self.getTime()
-    for d in range(4):
-      GPIO.output(self.digitPins[d],1)
-      if len(timeNow) == 3 and d == 0:
-        self.setNumber(int(timeNow[0]))
-      else:
-        self.setNumber(int(timeNow[d]))
-      time.sleep(0.005)
-      GPIO.output(self.digitPins[d],0)  
+    while True:
+      if time.localtime().tm_min != self.currentMinute:
+        timeNow = self.getTime()
+      for d in range(4):
+        GPIO.output(self.digitPins[d],1)
+        if len(timeNow) == 3 and d == 0:
+          self.setNumber(int(timeNow[0]))
+        else:
+          self.setNumber(int(timeNow[d]))
+        time.sleep(0.005)
+        GPIO.output(self.digitPins[d],0)  
