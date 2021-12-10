@@ -19,9 +19,12 @@ GPIO.setup(digitPins[3], GPIO.OUT)
 clockDisplay = LEDdisplay(dataPin, latchPin, clockPin)
 
 minute = time.localtime().tm_min
-hour = time.localtime().tm_hour
-if hour > 12:
-  hour = hour - 12
+# Because the time comes up wrong:
+hour = time.localtime().tm_hour - 5
+if hour < 1: hour = hour + 24
+# Display non-military time:
+if hour > 12: hour = hour - 12
+# Making the time into a list of numbers:
 timeNow = str(hour) + str(minute)
 timeNow = list(timeNow)
 
@@ -29,7 +32,10 @@ try: # exception handling
   while True:
     for d in range(4):
       GPIO.output(digitPins[d],1)
-      clockDisplay.setNumber(int(timeNow[d]))
+      if len(timeNow) == 3 and d == 0:
+        clockDisplay.setNumber(int(timeNow[0]))
+      else:
+        clockDisplay.setNumber(int(timeNow[d]))
       time.sleep(0.005)
       GPIO.output(digitPins[d],0)
 
