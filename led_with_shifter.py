@@ -33,9 +33,7 @@ try: # exception handling
 except KeyboardInterrupt: 
   print('\nExiting')
 except Exception as e: # catch all other errors
-  print(e)               # delete once code is debugged
-  LEDdisplay.p.terminate()      # terminate the process
-  LEDdisplay.p.join(2)          # wait up to 2 sec for process termination before ending code
+  print('\n', e)
 
 GPIO.cleanup()
 
