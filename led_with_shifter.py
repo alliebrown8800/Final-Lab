@@ -26,7 +26,7 @@ try: # exception handling
     for d in range(4):
       GPIO.output(digitPins[d],1)
       clockDisplay.setNumber(int(timeNow[d]))
-      time.sleep(0.001)
+      time.sleep(0.005)
       GPIO.output(digitPins[d],0)
 
 # More exception handling:
