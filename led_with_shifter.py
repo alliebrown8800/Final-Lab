@@ -22,10 +22,10 @@ try: # exception handling
   while True:
     for number in range(10):
       for n in range(4):
-        GPIO.output(digitPins[n],1)
+        GPIO.output(digitPins[1],1)
         clockDisplay.setNumber(number)
         time.sleep(0.4)
-        GPIO.output(digitPins[n],0)
+        GPIO.output(digitPins[1],0)
 
 # More exception handling:
 except KeyboardInterrupt: 
