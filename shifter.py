@@ -21,7 +21,7 @@ class Shifter():
 
   def shiftByte(self, byteVal):  # display a given byte pattern
     for i in range(8):           # 8 bits in register
-      GPIO.output(self.dataPin, ~(byteVal & (1<<i)))  # if common anode
-      #GPIO.output(self.dataPin, byteVal & (1<<i))    # if common cathode
+      #GPIO.output(self.dataPin, ~(byteVal & (1<<i)))  # if common anode
+      GPIO.output(self.dataPin, byteVal & (1<<i))    # if common cathode
       self.ping(self.clockPin)
     self.ping(self.latchPin)
