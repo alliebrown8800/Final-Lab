@@ -23,11 +23,11 @@ timeNow = list(timeNow)
 
 try: # exception handling
   while True:
-    for digit in range(4):
-      GPIO.output(digitPins[digit],1)
-      clockDisplay.setNumber(timeNow[int(digit)])
+    for d in range(4):
+      GPIO.output(digitPins[d],1)
+      clockDisplay.setNumber(timeNow[d])
       time.sleep(0.001)
-      GPIO.output(digitPins[digit],0)
+      GPIO.output(digitPins[d],0)
 
 # More exception handling:
 except KeyboardInterrupt: 
