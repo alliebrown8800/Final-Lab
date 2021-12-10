@@ -13,6 +13,8 @@ with open('alarm.txt', 'w') as f:
   json.dump(data,f) # dump data
 
 # New .html page
+print('Content-type:text/html\n\n')
+
 print('<html>')
 print('<form action="/cgi-bin/alarm.py" method="POST">')
 print('<body style="background-color:powderblue;">')
