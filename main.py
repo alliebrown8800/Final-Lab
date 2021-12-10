@@ -23,3 +23,5 @@ print("date and time =", dt_string)
 timeNow = str(time.localtime().tm_hour-5) + str(time.localtime().tm_min)
 timeNow = list(timeNow)
 print(timeNow)
+
+print(timeNow[0])
