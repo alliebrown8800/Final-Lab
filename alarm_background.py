@@ -21,6 +21,8 @@ import json
 pin1 = 19
 pin2 = 16
 pin3 = 20
+dataPin, latchPin, clockPin = 17, 27, 22
+digitPins = [6, 5, 13, 19]
 
 # Setting pins as inputs or outputs
 GPIO.setmode(GPIO.BCM)
@@ -34,12 +36,10 @@ while True:
   with open("alarm.txt", 'r') as f:
     parents_options = json.load(f) # retrieving json data from txt
   chosen_message = str(parents_options['message']) # the message that the parents chose
+  print(chosen_message)
 
   if str(parents_options['alarm']) != chosen_alarm: # if the chosen alarm is different than what it was before
     chosen_alarm = str(parents_options['alarm']) # then change it - this will be a string i believe 0345 yanno
+    print(chosen_alarm)
 
-  
-
-
-
-  time.sleep(0.1)
+  time.sleep(5)

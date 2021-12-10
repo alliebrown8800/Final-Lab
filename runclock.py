@@ -6,7 +6,6 @@ digitPins = [6, 5, 13, 19]
 
 try: # exception handling
   ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
-  ourClock.runClock()
 
 # More exception handling:
 except KeyboardInterrupt: 

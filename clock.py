@@ -1,5 +1,6 @@
 import time
 import RPi.GPIO as GPIO
+import multiprocessing
 # Clock class
 from shifter import Shifter    # extend by composition
 
@@ -28,6 +29,9 @@ class Clock():
     GPIO.setup(digitPins[3], GPIO.OUT)
     self.digitPins = digitPins
     self.currentMinute = ''
+    self.p = multiprocessing.Process(target=self.runClock,args=()) # create mp object
+    self.p.daemon = True # daemon object
+    self.p.start() # start mp
  
   def setNumber(self, num):  # display a given number
     self.shifter.shiftByte(Clock.numbers[num])
