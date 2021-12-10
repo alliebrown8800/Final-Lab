@@ -16,3 +16,10 @@ print("now =", now)
 # dd/mm/YY H:M:S
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 print("date and time =", dt_string)
+
+
+     
+# Driver code
+timeNow = str(time.localtime().tm_hour-5) + str(time.localtime().tm_min)
+timeNow = list(timeNow)
+print(timeNow)

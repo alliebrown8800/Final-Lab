@@ -9,7 +9,7 @@ from led_display import LEDdisplay
 # pin-agnostic).
 
 dataPin, latchPin, clockPin = 17, 27, 22
-digitPins = [5, 6, 13, 19]
+digitPins = [6, 5, 13, 19]
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(digitPins[0], GPIO.OUT) 
 GPIO.setup(digitPins[1], GPIO.OUT) 
@@ -17,15 +17,17 @@ GPIO.setup(digitPins[2], GPIO.OUT)
 GPIO.setup(digitPins[3], GPIO.OUT) 
 
 clockDisplay = LEDdisplay(dataPin, latchPin, clockPin)
+timeNow = str(time.localtime().tm_hour-5) + str(time.localtime().tm_min)
+timeNow = list(timeNow)
+
 
 try: # exception handling
   while True:
-    for number in range(10):
-      for digit in range(4):
-        GPIO.output(digitPins[digit],1)
-        clockDisplay.setNumber(number)
-        time.sleep(0.4)
-        GPIO.output(digitPins[digit],0)
+    for digit in range(4):
+      GPIO.output(digitPins[digit],1)
+      clockDisplay.setNumber(timeNow(digit))
+      time.sleep(0.001)
+      GPIO.output(digitPins[digit],0)
 
 # More exception handling:
 except KeyboardInterrupt: 
