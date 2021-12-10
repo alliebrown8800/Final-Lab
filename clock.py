@@ -26,7 +26,7 @@ class Clock():
     GPIO.setup(digitPins[1], GPIO.OUT) 
     GPIO.setup(digitPins[2], GPIO.OUT) 
     GPIO.setup(digitPins[3], GPIO.OUT) 
-    currentMinute = ''
+    self.currentMinute = ''
  
   def setNumber(self, num):  # display a given number
     self.shifter.shiftByte(Clock.numbers[num])
@@ -48,8 +48,9 @@ class Clock():
 
   def runClock(self):
     while True:
-      if time.localtime().tm_min != self.currentMinute:
+      if str(time.localtime().tm_min) != self.currentMinute:
         timeNow = self.getTime()
+        self.currentMinute = str(time.localtime().tm_min)
       for d in range(4):
         GPIO.output(self.digitPins[d],1)
         if len(timeNow) == 3 and d == 0:
