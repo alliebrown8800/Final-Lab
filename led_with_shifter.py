@@ -17,9 +17,13 @@ GPIO.setup(digitPins[2], GPIO.OUT)
 GPIO.setup(digitPins[3], GPIO.OUT) 
 
 clockDisplay = LEDdisplay(dataPin, latchPin, clockPin)
-timeNow = str(time.localtime().tm_hour-5) + str(time.localtime().tm_min)
-timeNow = list(timeNow)
 
+minute = time.localtime().tm_min
+hour = time.localtime().tm_hour
+if hour > 12:
+  hour = hour - 12
+timeNow = str(hour) + str(minute)
+timeNow = list(timeNow)
 
 try: # exception handling
   while True:
