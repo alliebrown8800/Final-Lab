@@ -26,6 +26,7 @@ class Clock():
     GPIO.setup(self.digitPins[1], GPIO.OUT) 
     GPIO.setup(self.digitPins[2], GPIO.OUT) 
     GPIO.setup(self.digitPins[3], GPIO.OUT) 
+    print('hi')
     self.currentMinute = ''
  
   def setNumber(self, num):  # display a given number
