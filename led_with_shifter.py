@@ -21,11 +21,11 @@ clockDisplay = LEDdisplay(dataPin, latchPin, clockPin)
 try: # exception handling
   while True:
     for number in range(10):
-      for n in range(4):
-        GPIO.output(digitPins[1],1)
+      for digit in range(4):
+        GPIO.output(digitPins[digit],1)
         clockDisplay.setNumber(number)
         time.sleep(0.4)
-        GPIO.output(digitPins[1],0)
+        GPIO.output(digitPins[digit],0)
 
 # More exception handling:
 except KeyboardInterrupt: 
