@@ -20,14 +20,13 @@ class Clock():
     0b11111111] # blank
 
   def __init__(self, data, latch, clock, digitPins):
-    print(digitPins)
     self.shifter = Shifter(data, latch, clock)
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(digitPins[0], GPIO.OUT) 
-    print('help')
     GPIO.setup(digitPins[1], GPIO.OUT) 
     GPIO.setup(digitPins[2], GPIO.OUT) 
     GPIO.setup(digitPins[3], GPIO.OUT)
+    self.digitPins = digitPins
     self.currentMinute = ''
  
   def setNumber(self, num):  # display a given number
