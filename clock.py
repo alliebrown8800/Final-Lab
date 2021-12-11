@@ -44,7 +44,7 @@ class Clock():
     self.p.daemon = True # daemon object
     self.p.start() # start mp
 
-    self.tempRead = multiprocessing.Value('s')
+    self.tempRead = multiprocessing.Value('str')
     self.tempRead.value = '60'
     self.t = multiprocessing.Process(target=self.readTemp,args=(self.tempRead,)) # create mp object
     self.t.daemon = True # daemon object
