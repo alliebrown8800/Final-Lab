@@ -3,7 +3,7 @@ from gpiozero import Buzzer
 
 buzzer = Buzzer(21)
 
-chosen_alarm = '1045'
+chosen_alarm = '1050'
 
 while True:
   # Get the time:
