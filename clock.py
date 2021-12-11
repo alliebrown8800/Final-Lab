@@ -98,7 +98,7 @@ class Clock():
       elif switch == False:
         self.runTemp()
 
-  def readTemp(self):
+  def readTemp(self, tempRead):
     self.tempSensor.readDHT11()
     self.tempRead.value = self.tempSensor.temperature
     print(self.tempRead.value)
