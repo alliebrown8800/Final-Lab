@@ -77,7 +77,6 @@ class Clock():
       self.setNumber(int(timeNow[d]))
       time.sleep(0.005)
       GPIO.output(self.digitPins[d],0)
-    print(self.tempRead.value)
 
   def runTemp(self):
     temp = str(self.tempRead.value)
@@ -103,4 +102,4 @@ class Clock():
     self.tempSensor.readDHT11()
     self.tempRead.value = int(self.tempSensor.temperature)
     print(self.tempRead.value)
-    time.sleep(10)
+    time.sleep(12)
