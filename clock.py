@@ -39,13 +39,14 @@ class Clock():
     self.currentMinute = ''
 
     self.tempSensor = DHT(DHTPin)
+    
+    self.tempRead = multiprocessing.Value('i')
+    self.tempRead.value = 60
 
     self.p = multiprocessing.Process(target=self.run,args=()) # create mp object
     self.p.daemon = True # daemon object
     self.p.start() # start mp
 
-    self.tempRead = multiprocessing.Value('i')
-    self.tempRead.value = 60
     self.t = multiprocessing.Process(target=self.readTemp,args=()) # create mp object
     self.t.daemon = True # daemon object
     self.t.start() # start mp
