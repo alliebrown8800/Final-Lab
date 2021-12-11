@@ -42,7 +42,7 @@ class Clock():
     self.p = multiprocessing.Process(target=self.run,args=()) # create mp object
     self.p.daemon = True # daemon object
     self.p.start() # start mp
- 
+
   def setNumber(self, num):  # display a given number
     self.shifter.shiftByte(Clock.numbers[num])
 
@@ -73,9 +73,9 @@ class Clock():
 
   def runTemp(self):
     self.tempSensor.readDHT11()
-    temp = str(self.tempSensor.temperature)
-    print(temp)
-    temp = list(temp)
+    if str(self.tempSensor.temperature) != self.currentTemp:
+      currentTemp = str(self.tempSensor.temperature)
+    temp = list(currentTemp)
     print(temp)
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
