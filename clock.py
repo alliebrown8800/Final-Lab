@@ -20,7 +20,7 @@ class Clock():
     0b10010000, # 9
     0b11111111] # blank
 
-  def __init__(self, data, latch, clock, digitPins):
+  def __init__(self, data, latch, clock, digitPins, switchPin):
     
     self.shifter = Shifter(data, latch, clock)
 
@@ -29,8 +29,11 @@ class Clock():
     GPIO.setup(digitPins[1], GPIO.OUT) 
     GPIO.setup(digitPins[2], GPIO.OUT) 
     GPIO.setup(digitPins[3], GPIO.OUT)
+    GPIO.setup(switchPin, GPIO.IN)
 
     self.digitPins = digitPins
+    self.switchPin = switchPin
+
     self.currentMinute = ''
 
     self.p = multiprocessing.Process(target=self.run,args=()) # create mp object
@@ -68,6 +71,18 @@ class Clock():
 
   def runTemp(self):
     #temperature stuff here
+    # read temperature
+    while True:
+      for d in range(4):
+        GPIO.output(self.digitPins[d],1)
+        if d == 0 or d == 3: self.setNumber(10)
+        else: self.setNumber(7)
+        time.sleep(0.005)
+        GPIO.output(self.digitPins[d],0) 
 
   def run(self):
-    # for button sheet
+    switch = GPIO.input(self.switchPin)
+    if switch == True:
+      self.runClock()
+    elif switch == False:
+      self.runTemp()
