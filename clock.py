@@ -19,7 +19,8 @@ class Clock():
     0b11111000, # 7
     0b10000000, # 8
     0b10010000, # 9
-    0b11111111] # blank
+    0b11111111,
+    0b00010110] # blank
 
 
   def __init__(self, data, latch, clock, digitPins, switchPin, DHTPin):
@@ -82,10 +83,10 @@ class Clock():
   def runTemp(self):
     temp = str(self.tempRead.value)
     temp = list(temp)
-    print(temp)
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
-      if d == 0 or d == 3: self.setNumber(10)
+      if d == 0: self.setNumber(10)
+      if d == 3: self.setNumber(11)
       else: self.setNumber(int(temp[d-1]))
       time.sleep(0.005)
       GPIO.output(self.digitPins[d],0) 
@@ -103,5 +104,5 @@ class Clock():
     while True:
       self.tempSensor.readDHT11()
       self.tempRead.value = int(self.tempSensor.temperature)
-      print(self.tempRead.value)
+      self.tempRead.value = self.tempRead.value*(9/5) + 32
       time.sleep(2)
