@@ -78,7 +78,7 @@ class Clock():
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
       if d == 0 or d == 3: self.setNumber(10)
-      else: self.setNumber(temp[d-1])
+      else: self.setNumber(int(temp[d-1]))
       time.sleep(0.005)
       GPIO.output(self.digitPins[d],0) 
 
