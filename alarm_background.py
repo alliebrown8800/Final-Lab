@@ -30,7 +30,7 @@ ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
 
 try:
   while True:
-    with open("alarm.txt", 'r') as f:
+    with open("alarm.json", 'r') as f:
       parents_options = json.load(f) # retrieving json data from txt
     chosen_message = str(parents_options['message']) # the message that the parents chose
 

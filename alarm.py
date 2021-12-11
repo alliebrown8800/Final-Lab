@@ -9,7 +9,7 @@ alarm_time = data.getvalue('alarm') # selected LED
 data = {"message":parents_message, "alarm":alarm_time} # store values
 
 # Store data in json/txt
-with open('alarm.txt', 'w') as f:  
+with open('alarm.json', 'w') as f:  
   json.dump(data,f) # dump data
 
 # New .html page
