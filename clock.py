@@ -21,15 +21,19 @@ class Clock():
     0b11111111] # blank
 
   def __init__(self, data, latch, clock, digitPins):
+    
     self.shifter = Shifter(data, latch, clock)
+
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(digitPins[0], GPIO.OUT) 
     GPIO.setup(digitPins[1], GPIO.OUT) 
     GPIO.setup(digitPins[2], GPIO.OUT) 
     GPIO.setup(digitPins[3], GPIO.OUT)
+
     self.digitPins = digitPins
     self.currentMinute = ''
-    self.p = multiprocessing.Process(target=self.runClock,args=()) # create mp object
+
+    self.p = multiprocessing.Process(target=self.run,args=()) # create mp object
     self.p.daemon = True # daemon object
     self.p.start() # start mp
  
@@ -60,4 +64,10 @@ class Clock():
         GPIO.output(self.digitPins[d],1)
         self.setNumber(int(timeNow[d]))
         time.sleep(0.005)
-        GPIO.output(self.digitPins[d],0)  
+        GPIO.output(self.digitPins[d],0) 
+
+  def runTemp(self):
+    #temperature stuff here
+
+  def run(self):
+    # for button sheet

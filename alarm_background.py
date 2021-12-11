@@ -35,7 +35,7 @@ try:
       parents_options = json.load(f) # retrieving json data from txt
     chosen_message = str(parents_options['message']) # the message that the parents chose
 
-    if str(parents_options['alarm']) != chosen_alarm or parents_options['alarm'] == 'null': # if the chosen alarm is different than what it was before
+    if str(parents_options['alarm']) != chosen_alarm or parents_options['alarm'] != 'null': # if the chosen alarm is different than what it was before
       chosen_alarm = str(parents_options['alarm']) # then change it - this will be a string i believe 0345 yanno
       
     # Get the time:
