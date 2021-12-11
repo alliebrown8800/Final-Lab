@@ -44,7 +44,7 @@ while True:
   # Display non-military time:
   if hour > 12: hour = hour - 12
   # Making the time into a list of numbers:
-  timeNow = str(hour) + ':' + str(minute)
+  currentTime = str(hour) + ':' + str(minute)
 
 
 
