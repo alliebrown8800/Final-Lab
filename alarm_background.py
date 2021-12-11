@@ -48,9 +48,6 @@ try:
     if hour > 12: hour = hour - 12
     # Making the time into a list of numbers:
     currentTime = str(hour) + ':' + str(minute)
-    print(chosen_alarm)
-    print(currentTime)
-
 
     if chosen_alarm == currentTime:
       GPIO.output(buzzerPin,1)        

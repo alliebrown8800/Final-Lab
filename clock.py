@@ -59,26 +59,24 @@ class Clock():
     return(timeNow)
 
   def runClock(self):
-    while True:
-      if str(time.localtime().tm_min) != self.currentMinute:
-        timeNow = self.getTime()
-        self.currentMinute = str(time.localtime().tm_min)
-      for d in range(4):
-        GPIO.output(self.digitPins[d],1)
-        self.setNumber(int(timeNow[d]))
-        time.sleep(0.005)
-        GPIO.output(self.digitPins[d],0) 
+    if str(time.localtime().tm_min) != self.currentMinute:
+      timeNow = self.getTime()
+      self.currentMinute = str(time.localtime().tm_min)
+    for d in range(4):
+      GPIO.output(self.digitPins[d],1)
+      self.setNumber(int(timeNow[d]))
+      time.sleep(0.005)
+      GPIO.output(self.digitPins[d],0) 
 
   def runTemp(self):
     #temperature stuff here
     # read temperature
-    while True:
-      for d in range(4):
-        GPIO.output(self.digitPins[d],1)
-        if d == 0 or d == 3: self.setNumber(10)
-        else: self.setNumber(7)
-        time.sleep(0.005)
-        GPIO.output(self.digitPins[d],0) 
+    for d in range(4):
+      GPIO.output(self.digitPins[d],1)
+      if d == 0 or d == 3: self.setNumber(10)
+      else: self.setNumber(7)
+      time.sleep(0.005)
+      GPIO.output(self.digitPins[d],0) 
 
   def run(self):
     switch = GPIO.input(self.switchPin)
