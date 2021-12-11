@@ -6,7 +6,7 @@ from shifter import Shifter    # extend by composition
 
 class Clock():
 
-  'Class for controlling a 7-segment LED display'
+  'Class for controlling the clock'
   numbers = [ 
     0b11000000, # 0
     0b11111001, # 1
