@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import multiprocessing
 # Clock class
 from shifter import Shifter    # extend by composition
+from temp_sensor import DHT
 
 class Clock():
 
@@ -20,7 +21,7 @@ class Clock():
     0b10010000, # 9
     0b11111111] # blank
 
-  def __init__(self, data, latch, clock, digitPins, switchPin):
+  def __init__(self, data, latch, clock, digitPins, switchPin, DHTPin):
     
     self.shifter = Shifter(data, latch, clock)
 
@@ -35,6 +36,8 @@ class Clock():
     self.switchPin = switchPin
 
     self.currentMinute = ''
+
+    self.tempSensor = DHT(DHTPin)
 
     self.p = multiprocessing.Process(target=self.run,args=()) # create mp object
     self.p.daemon = True # daemon object
@@ -69,12 +72,13 @@ class Clock():
       GPIO.output(self.digitPins[d],0) 
 
   def runTemp(self):
-    #temperature stuff here
-    # read temperature
+    self.tempSensor.readDHT11()
+    temp = str(self.tempSensor.temperature)
+    temp = list(temp)
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
       if d == 0 or d == 3: self.setNumber(10)
-      else: self.setNumber(7)
+      else: self.setNumber(temp[d-1])
       time.sleep(0.005)
       GPIO.output(self.digitPins[d],0) 
 
