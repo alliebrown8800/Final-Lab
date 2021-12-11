@@ -20,7 +20,7 @@ class Clock():
     0b10000000, # 8
     0b10010000, # 9
     0b11111111,
-    0b00010110] # blank
+    0b10000111] # blank
 
 
   def __init__(self, data, latch, clock, digitPins, switchPin, DHTPin):
@@ -106,6 +106,6 @@ class Clock():
       self.tempSensor.readDHT11()
       if self.tempSensor.temperature > 0:
         celsius = int(self.tempSensor.temperature)
-        fahr = celsius*(9/5) + 32
+        fahr = int(float(celsius)*(1.8) + 32)
         self.tempRead.value = fahr
       time.sleep(2)
