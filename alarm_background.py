@@ -20,6 +20,7 @@ dataPin, latchPin, clockPin = 17, 27, 22
 digitPins = [6, 5, 13, 19]
 motionPin = 14
 buzzerPin = 21
+switchPin = 18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(motionPin, GPIO.IN)
 GPIO.setup(buzzerPin, GPIO.OUT)
@@ -27,7 +28,7 @@ GPIO.setup(buzzerPin, GPIO.OUT)
 chosen_alarm = ''
 GPIO.output(buzzerPin,0)
 
-ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
+ourClock = Clock(dataPin, latchPin, clockPin, digitPins, switchPin)
 
 try:
   while True:
