@@ -47,8 +47,12 @@ while True:
   timeNow = str(hour) + ':' + str(minute)
 
   if chosen_alarm == timeNow:
+    buzzer.on()
+    time.sleep(5)
     while GPIO.input(motionPin) == False:
       buzzer.on()
-      time.sleep(5)
+      time.sleep(.5)
+      buzzer.off()
+      time.sleep(.5)
     buzzer.off()
 
