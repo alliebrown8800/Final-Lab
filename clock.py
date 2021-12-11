@@ -83,6 +83,7 @@ class Clock():
   def runTemp(self):
     temp = str(self.tempRead.value)
     temp = list(temp)
+    print(temp)
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
       if d == 0: self.setNumber(10)
