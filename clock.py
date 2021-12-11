@@ -81,19 +81,7 @@ class Clock():
   def run(self):
     while True:
       switch = GPIO.input(self.switchPin)
-      while switch == True:
-        if str(time.localtime().tm_min) != self.currentMinute:
-          timeNow = self.getTime()
-          self.currentMinute = str(time.localtime().tm_min)
-        for d in range(4):
-          GPIO.output(self.digitPins[d],1)
-          self.setNumber(int(timeNow[d]))
-          time.sleep(0.005)
-          GPIO.output(self.digitPins[d],0)
-      while switch == False:
-        for d in range(4):
-          GPIO.output(self.digitPins[d],1)
-          if d == 0 or d == 3: self.setNumber(10)
-          else: self.setNumber(7)
-          time.sleep(0.005)
-          GPIO.output(self.digitPins[d],0) 
+      if switch == True:
+        self.runClock()
+      elif switch == False:
+        self.runTemp()
