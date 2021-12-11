@@ -32,6 +32,7 @@ class Clock():
     self.p = multiprocessing.Process(target=self.runClock,args=()) # create mp object
     self.p.daemon = True # daemon object
     self.p.start() # start mp
+    self.bestie = True
  
   def setNumber(self, num):  # display a given number
     self.shifter.shiftByte(Clock.numbers[num])
@@ -52,7 +53,7 @@ class Clock():
     return(timeNow)
 
   def runClock(self):
-    while True:
+    while self.bestie == True:
       if str(time.localtime().tm_min) != self.currentMinute:
         timeNow = self.getTime()
         self.currentMinute = str(time.localtime().tm_min)
