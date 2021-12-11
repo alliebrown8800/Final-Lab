@@ -104,6 +104,8 @@ class Clock():
   def readTemp(self):
     while True:
       self.tempSensor.readDHT11()
-      self.tempRead.value = int(self.tempSensor.temperature)
-      self.tempRead.value = self.tempRead.value*(9/5) + 32
+      celsius = int(self.tempSensor.temperature)
+      fahr = celsius*(9/5) + 32
+      if fahr < 100 or fahr > 0:
+        self.tempRead.value = fahr
       time.sleep(2)
