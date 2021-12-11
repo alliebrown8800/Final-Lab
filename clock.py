@@ -46,7 +46,7 @@ class Clock():
 
     self.tempRead = multiprocessing.Value('i')
     self.tempRead.value = 60
-    self.t = multiprocessing.Process(target=self.readTemp,args=(self.tempRead,)) # create mp object
+    self.t = multiprocessing.Process(target=self.readTemp,args=()) # create mp object
     self.t.daemon = True # daemon object
     self.t.start() # start mp
 
@@ -99,7 +99,7 @@ class Clock():
       elif switch == False:
         self.runTemp()
 
-  def readTemp(self, tempRead):
+  def readTemp(self):
     self.tempSensor.readDHT11()
     self.tempRead.value = int(self.tempSensor.temperature)
     print(self.tempRead.value)
