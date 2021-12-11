@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 
 # We need to do a few things here:
-# Retrieve alarm time and message from html
 # Read temperature
-# Have buzzer go off - automatically change display to time
+# Have buzzer go off
 #   Monitor movement
 #   Shoot cannon at 1 minute or so
 
@@ -15,6 +14,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 from clock import Clock
+from gpiozero import Buzzer
 
 # Naming pins
 pin1 = 19
@@ -29,6 +29,8 @@ GPIO.setup(pin1, GPIO.OUT)
 GPIO.setup(pin2, GPIO.OUT)
 GPIO.setup(pin3, GPIO.OUT)
 
+buzzer = Buzzer(21)
+
 chosen_alarm = ''
 
 ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
@@ -37,10 +39,21 @@ while True:
   with open("alarm.txt", 'r') as f:
     parents_options = json.load(f) # retrieving json data from txt
   chosen_message = str(parents_options['message']) # the message that the parents chose
-  print(chosen_message)
 
-  if str(parents_options['alarm']) != chosen_alarm: # if the chosen alarm is different than what it was before
+  if str(parents_options['alarm']) != chosen_alarm or parents_options['alarm'] == 'null': # if the chosen alarm is different than what it was before
     chosen_alarm = str(parents_options['alarm']) # then change it - this will be a string i believe 0345 yanno
-    print(chosen_alarm)
+    
+  # Get the time:
+  minute = time.localtime().tm_min
+  # Because the time comes up wrong:
+  hour = time.localtime().tm_hour - 5
+  if hour < 1: hour = hour + 24
+  # Display non-military time:
+  if hour > 12: hour = hour - 12
+  # Making the time into a list of numbers:
+  timeNow = str(hour) + str(minute)
+
+  if chosen_alarm == timeNow:
+    buzzer.on()
 
   time.sleep(5)
