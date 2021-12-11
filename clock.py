@@ -74,7 +74,9 @@ class Clock():
   def runTemp(self):
     self.tempSensor.readDHT11()
     temp = str(self.tempSensor.temperature)
+    print(temp)
     temp = list(temp)
+    print(temp)
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
       if d == 0 or d == 3: self.setNumber(10)
