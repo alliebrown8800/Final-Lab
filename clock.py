@@ -44,8 +44,8 @@ class Clock():
     self.p.daemon = True # daemon object
     self.p.start() # start mp
 
-    self.tempRead = multiprocessing.Value('str')
-    self.tempRead.value = '60'
+    self.tempRead = multiprocessing.Value('i')
+    self.tempRead.value = 60
     self.t = multiprocessing.Process(target=self.readTemp,args=(self.tempRead,)) # create mp object
     self.t.daemon = True # daemon object
     self.t.start() # start mp
@@ -79,7 +79,7 @@ class Clock():
       GPIO.output(self.digitPins[d],0) 
 
   def runTemp(self):
-    temp = self.tempRead.value
+    temp = str(self.tempRead.value)
     temp = list(temp)
     print(self.temp)
     for d in range(4):
@@ -100,6 +100,6 @@ class Clock():
 
   def readTemp(self):
     self.tempSensor.readDHT11()
-    self.tempRead.value = str(self.tempSensor.temperature)
+    self.tempRead.value = self.tempSensor.temperature
     print(self.tempRead.value)
     time.sleep(10)
