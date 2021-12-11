@@ -76,7 +76,8 @@ class Clock():
       GPIO.output(self.digitPins[d],1)
       self.setNumber(int(timeNow[d]))
       time.sleep(0.005)
-      GPIO.output(self.digitPins[d],0) 
+      GPIO.output(self.digitPins[d],0)
+    print(self.tempRead.value)
 
   def runTemp(self):
     temp = str(self.tempRead.value)
