@@ -1,14 +1,5 @@
 #!/usr/bin/python3
 
-# We need to do a few things here:
-# Read temperature
-# Have buzzer go off
-#   Monitor movement
-#   Shoot cannon at 1 minute or so
-
-# Separately:
-# Change display if button is pressed
-
 # Importing libraries:
 import RPi.GPIO as GPIO
 import time
@@ -40,6 +31,8 @@ try:
     if str(parents_options['alarm']) != chosen_alarm or parents_options['alarm'] != 'null': # if the chosen alarm is different than what it was before
       chosen_alarm = str(parents_options['alarm']) # then change it - this will be a string i believe 0345 yanno
       
+    # refresh message
+
     # Get the time:
     minute = time.localtime().tm_min
     # Because the time comes up wrong:
@@ -52,7 +45,7 @@ try:
 
     if chosen_alarm == currentTime:
       GPIO.output(buzzerPin,1)        
-      time.sleep(5)
+      time.sleep(10)
       while GPIO.input(motionPin) == False:
         GPIO.output(buzzerPin,1)
         time.sleep(.5)
