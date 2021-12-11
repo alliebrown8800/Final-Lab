@@ -20,7 +20,7 @@ class Clock():
     0b10000000, # 8
     0b10010000, # 9
     0b11111111,
-    0b10000111] # blank
+    0b10001110] # blank
 
 
   def __init__(self, data, latch, clock, digitPins, switchPin, DHTPin):
@@ -87,7 +87,7 @@ class Clock():
     for d in range(4):
       GPIO.output(self.digitPins[d],1)
       if d == 0: self.setNumber(10)
-      if d == 3: self.setNumber(11)
+      elif d == 3: self.setNumber(11)
       else: self.setNumber(int(temp[d-1]))
       time.sleep(0.005)
       GPIO.output(self.digitPins[d],0) 
