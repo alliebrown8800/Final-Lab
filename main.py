@@ -13,3 +13,14 @@ if hour > 12: hour = hour - 12
 timeNow = str(hour) + ':' + str(minute)
 print(timeNow)
 print(type(timeNow))
+
+
+  if chosen_alarm == timeNow:
+    buzzer.on()
+    time.sleep(5)
+    while GPIO.input(motionPin) == False:
+      buzzer.on()
+      time.sleep(.5)
+      buzzer.off()
+      time.sleep(.5)
+    buzzer.off()
