@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 pin_MotionSensor = 14
 
@@ -12,6 +13,7 @@ try: # exception handling
       print('Motion detected')
     elif motion == False:
       print('No motion detected')
+    time.sleep(.1)
 
 # More exception handling:
 except KeyboardInterrupt: 
