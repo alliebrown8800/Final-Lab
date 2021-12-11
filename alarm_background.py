@@ -16,19 +16,12 @@ import json
 from clock import Clock
 from gpiozero import Buzzer
 
-# Naming pins
-pin1 = 19
-pin2 = 16
-pin3 = 20
+# Pin Setup
 dataPin, latchPin, clockPin = 17, 27, 22
 digitPins = [6, 5, 13, 19]
-
-# Setting pins as inputs or outputs
+motionPin = 14
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(pin1, GPIO.OUT)
-GPIO.setup(pin2, GPIO.OUT)
-GPIO.setup(pin3, GPIO.OUT)
-
+GPIO.setup(motionPin, GPIO.IN)
 buzzer = Buzzer(21)
 
 chosen_alarm = ''
@@ -54,4 +47,8 @@ while True:
   timeNow = str(hour) + ':' + str(minute)
 
   if chosen_alarm == timeNow:
-    buzzer.on()
+    while GPIO.input(motionPin) == False:
+      buzzer.on()
+      time.sleep(5)
+    buzzer.off()
+
