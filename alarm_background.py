@@ -25,6 +25,7 @@ GPIO.setup(motionPin, GPIO.IN)
 GPIO.setup(buzzerPin, GPIO.OUT)
 
 chosen_alarm = ''
+GPIO.output(buzzerPin,0)
 
 ourClock = Clock(dataPin, latchPin, clockPin, digitPins)
 
