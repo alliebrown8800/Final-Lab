@@ -21,8 +21,6 @@ class Clock():
     0b10010000, # 9
     0b11111111] # blank
 
- 
-
 
   def __init__(self, data, latch, clock, digitPins, switchPin, DHTPin):
     
@@ -46,7 +44,8 @@ class Clock():
     self.p.daemon = True # daemon object
     self.p.start() # start mp
 
-    self.tempRead = multiprocessing.Value('str')
+    self.tempRead = multiprocessing.Value('s')
+    self.tempRead.value = '60'
     self.t = multiprocessing.Process(target=self.readTemp,args=(self.tempRead,)) # create mp object
     self.t.daemon = True # daemon object
     self.t.start() # start mp
