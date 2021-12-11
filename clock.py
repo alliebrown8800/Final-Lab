@@ -99,7 +99,8 @@ class Clock():
         self.runTemp()
 
   def readTemp(self):
-    self.tempSensor.readDHT11()
-    self.tempRead.value = int(self.tempSensor.temperature)
-    print(self.tempRead.value)
-    time.sleep(12)
+    while True:
+      self.tempSensor.readDHT11()
+      self.tempRead.value = int(self.tempSensor.temperature)
+      print(self.tempRead.value)
+      time.sleep(2)
