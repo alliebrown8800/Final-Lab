@@ -56,6 +56,8 @@ try:
         GPIO.output(buzzerPin,0)
         time.sleep(.5)
       GPIO.output(buzzerPin,0)
+    
+    time.sleep(1)
 
 except KeyboardInterrupt: 
   print('\nExiting')
