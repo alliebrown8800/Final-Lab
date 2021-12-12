@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-pin_MotionSensor = 14
+pin_MotionSensor = 4
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_MotionSensor, GPIO.IN)
